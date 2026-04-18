@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian — One story. Every angle.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size:15px}
+.mast{border-bottom:2px solid #1a1814;padding:0 24px;background:#faf9f6;position:sticky;top:0;z-index:100}
+.mast-in{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 0;flex-wrap:wrap;gap:10px}
+.logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:#1a1814;text-decoration:none;cursor:pointer}
+.tagline{font-size:11px;color:#8a8780;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.mast-r{display:flex;align-items:center;gap:10px}
+.dlab{font-size:12px;color:#8a8780}
+.badge{font-size:11px;padding:3px 10px;border:1px solid #d8d4cc;border-radius:20px;color:#4a4740;background:#f2f0eb}
+.rbtn{font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 14px;border:1px solid #d8d4cc;background:transparent;border-radius:8px;cursor:pointer;color:#4a4740}
+.rbtn:hover{background:#f2f0eb}
+.specbar{border-bottom:1px solid #d8d4cc;background:#f2f0eb;padding:0 24px}
+.specbar-in{max-width:900px;margin:0 auto;display:flex;align-items:center}
+.speck{font-size:11px;font-weight:500;padding:8px 16px;display:flex;align-items:center;gap:6px;border-right:1px solid #d8d4cc;color:#8a8780}
+.dot{width:8px;height:8px;border-radius:50%}
+.live{font-size:11px;color:#8a8780;padding:8px 16px;margin-left:auto;display:flex;align-items:center;gap:6px}
+.pulse{width:7px;height:7px;border-radius:50%;background:#1a6b3a;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.wrap{max-width:900px;margin:0 auto;padding:24px}
+.spinner{width:32px;height:32px;border:2px solid #d8d4cc;border-top-color:#1a1814;border-radius:50%;animation:spin .8s linear infinite;margin:50px auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loadtxt{text-align:center;font-size:14px;color:#4a4740;margin-bottom:40px}
+.sec-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#8a8780;padding-bottom:10px;border-bottom:1px solid #d8d4cc;margin-bottom:16px;margin-top:28px}
+.scard{padding:18px 0;border-bottom:1px solid #d8d4cc;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;transition:background .12s}
+.scard:hover{background:#f2f0eb;margin:0 -12px;padding:18px 12px;border-bottom-color:transparent;border-radius:8px}
+.scat{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#8a8780;margin-bottom:5px}
+.shead{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;line-height:1.3;margin-bottom:6px}
+.stease{font-size:13px;color:#4a4740;line-height:1.55;margin-bottom:10px}
+.cbar{display:flex;align-items:center;gap:6px}
+.ctrack{width:60px;height:3px;background:#e8e5de;border-radius:2px;overflow:hidden}
+.cfill{height:100%;border-radius:2px}
+.cnum{font-size:11px;font-weight:500}
+.ltags{display:flex;flex-direction:column;gap:3px;padding-top:22px}
+.ltag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;text-align:center}
+.tL{background:#e8f0f8;color:#1a4a7a}.tC{background:#fdf3dc;color:#5a3a00}.tR{background:#faeaea;color:#6a1a1a}
+#article{display:none}
+.aback{font-size:13px;color:#8a8780;cursor:pointer;padding:14px 0;border-bottom:1px solid #d8d4cc;margin-bottom:22px;display:flex;align-items:center;gap:6px}
+.aback:hover{color:#1a1814}
+.acat{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#8a8780;margin-bottom:10px}
+.ahead{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;line-height:1.25;margin-bottom:20px}
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+@media(max-width:500px){.mrow{grid-template-columns:1fr}}
+.mbox{background:#f2f0eb;border-radius:8px;padding:14px}
+.mlabel{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a8780;margin-bottom:8px;font-weight:500}
+.msub{font-size:12px;color:#4a4740;line-height:1.55;margin-top:4px}
+.pstrip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:22px}
+@media(max-width:500px){.pstrip{grid-template-columns:1fr}}
+.pbox{padding:12px;border-radius:8px}
+.pL{background:#e8f0f8}.pC{background:#fdf3dc}.pR{background:#faeaea}
+.ptag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:6px}
+.ptext{font-size:12px;line-height:1.6}
+.ptL{color:#1a4a7a}.ptC{color:#5a3a00}.ptR{color:#6a1a1a}
+.tabs{display:flex;border-bottom:2px solid #d8d4cc;margin-bottom:22px}
+.tab{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:10px 18px;border:none;background:transparent;color:#8a8780;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.on{color:#1a1814;border-bottom-color:#1a1814}
+.panel{display:none}.panel.on{display:block}
+.abody p{font-size:16px;line-height:1.85;margin-bottom:1.3rem}
+.faults{display:flex;flex-direction:column;gap:14px}
+.fault{display:flex;gap:12px;align-items:flex-start}
+.fnum{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:#faeaea;color:#8a1a1a;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;margin-top:2px}
+.ftext{font-size:15px;line-height:1.65}
+.blinds{display:flex;flex-direction:column;gap:12px}
+.blind{padding:14px 16px;border-radius:8px;border-left:3px solid}
+.bL{background:#e8f0f8;border-left-color:#1a4a7a}.bC{background:#fdf3dc;border-left-color:#5a3a00}.bR{background:#faeaea;border-left-color:#6a1a1a}
+.blabel{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.blL{color:#1a4a7a}.blC{color:#5a3a00}.blR{color:#6a1a1a}
+.btext{font-size:14px;line-height:1.65}
+.errmsg{background:#faeaea;border-radius:8px;padding:14px;font-size:13px;color:#8a1a1a;line-height:1.6}
+.sload{padding:28px;border:1px solid #d8d4cc;border-radius:14px;text-align:center}
+.lsteps{text-align:left;margin-top:16px}
+.lstep{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:13px;color:#8a8780;opacity:.3;transition:opacity .4s}
+.lstep.on{opacity:1;color:#1a1814}.lstep.done{opacity:1;color:#4a4740}
+.sico{width:18px;height:18px;border-radius:50%;border:1px solid #d8d4cc;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px}
+.sico.on{background:#e8e5de;border-color:#8a8780}.sico.done{background:#e6f4ec;border-color:#1a6b3a;color:#1a6b3a}
+.foot{border-top:1px solid #d8d4cc;margin-top:60px;padding:20px 0;text-align:center;font-size:12px;color:#8a8780}
+.foot a{color:#1a4a7a;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-in">
+    <div>
+      <div class="logo" onclick="showFeed()">Meridian</div>
+      <div class="tagline">One story. Every angle. The truth between.</div>
+    </div>
+    <div class="mast-r">
+      <span class="badge" id="edition"></span>
+      <span class="dlab" id="dlab"></span>
+      <button class="rbtn" onclick="loadFeed()">&#8635; Refresh</button>
+    </div>
+  </div>
+</header>
+
+<div class="specbar">
+  <div class="specbar-in">
+    <div class="speck"><span class="dot" style="background:#1a4a7a"></span>Left</div>
+    <div class="speck"><span class="dot" style="background:#5a3a00"></span>Center</div>
+    <div class="speck"><span class="dot" style="background:#6a1a1a"></span>Right</div>
+    <div class="live"><span class="pulse"></span>Live RSS &middot; AI synthesis &middot; Updated hourly</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="feed">
+    <div class="spinner"></div>
+    <div class="loadtxt">Loading today's stories...</div>
+  </div>
+  <div id="article">
+    <div class="aback" onclick="showFeed()">&#8592; Back</div>
+    <div class="acat" id="a-cat"></div>
+    <h1 class="ahead" id="a-head"></h1>
+    <div id="a-loading" style="display:none">
+      <div class="sload">
+        <div class="spinner" style="margin:0 auto 12px"></div>
+        <div style="font-size:14px;color:#4a4740">Synthesizing perspectives...</div>
+        <div class="lsteps">
+          <div class="lstep" id="s0"><div class="sico">1</div>Scanning left, center &amp; right sources</div>
+          <div class="lstep" id="s1"><div class="sico">2</div>Identifying perspective clusters</div>
+          <div class="lstep" id="s2"><div class="sico">3</div>Building synthesis narrative</div>
+          <div class="lstep" id="s3"><div class="sico">4</div>Scoring convergence &amp; fault lines</div>
+        </div>
+      </div>
+    </div>
+    <div id="a-content" style="display:none">
+      <div class="mrow">
+        <div class="mbox">
+          <div class="mlabel">Convergence score</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+            <div style="flex:1;height:6px;background:#e8e5de;border-radius:3px;overflow:hidden">
+              <div id="cfill" style="height:100%;border-radius:3px;transition:width 1s ease;width:0%"></div>
+            </div>
+            <span id="cscore" style="font-size:20px;font-weight:500"></span>
+          </div>
+        </div>
+        <div class="mbox">
+          <div class="mlabel">Consensus kernel</div>
+          <p id="kernel" class="msub"></p>
+        </div>
+      </div>
+      <div class="pstrip">
+        <div class="pbox pL"><span class="ltag tL ptag">Left</span><div class="ptext ptL" id="lt"></div></div>
+        <div class="pbox pC"><span class="ltag tC ptag">Center</span><div class="ptext ptC" id="ct"></div></div>
+        <div class="pbox pR"><span class="ltag tR ptag">Right</span><div class="ptext ptR" id="rt"></div></div>
+      </div>
+      <div class="tabs">
+        <button class="tab on" onclick="doTab('syn',this)">Synthesis</button>
+        <button class="tab" onclick="doTab('fl',this)">Fault Lines</button>
+        <button class="tab" onclick="doTab('be',this)">Blind Eye</button>
+      </div>
+      <div id="tp-syn" class="panel on"><div id="sbody" class="abody"></div></div>
+      <div id="tp-fl"  class="panel"><div id="flbody" class="faults"></div></div>
+      <div id="tp-be"  class="panel"><div id="bebody" class="blinds"></div></div>
+    </div>
+    <div id="a-err" class="errmsg" style="display:none"></div>
+  </div>
+  <div class="foot">
+    <strong style="color:#4a4740">Meridian</strong> &mdash; not left, not right, not even center. The whole picture. &middot;
+    <a href="mailto:hello@meridian.news">hello@meridian.news</a>
+  </div>
+</div>
+
+<script>
+var STORIES = [];
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function cc(n){return n>=65?'#1a6b3a':n>=40?'#8a5200':'#8a1a1a';}
+
+window.addEventListener('DOMContentLoaded',function(){
+  var h=new Date().getHours();
+  document.getElementById('edition').textContent=h<12?'Morning Dispatch':'Evening Wrap';
+  document.getElementById('dlab').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  loadFeed();
+});
+
+async function loadFeed(){
+  var f=document.getElementById('feed');
+  f.innerHTML='<div class="spinner"></div><div class="loadtxt">Loading today\'s stories...</div>';
+  showFeed();
+  try{
+    var r=await fetch('/api/stories');
+    var d=await r.json();
+    if(!d.ok) throw new Error(d.error||'Failed to load');
+    STORIES=d.stories;
+    var mid=Math.ceil(STORIES.length/2);
+    f.innerHTML=section('Morning Dispatch',STORIES.slice(0,mid))+section('Evening Wrap',STORIES.slice(mid));
+    f.querySelectorAll('[data-id]').forEach(function(el){
+      el.addEventListener('click',function(){openStory(+el.dataset.id);});
+    });
+  }catch(e){
+    f.innerHTML='<div class="errmsg">Could not load stories: '+esc(e.message)+'</div>';
+  }
+}
+
+function section(title,list){
+  if(!list.length) return '';
+  var h='<div class="sec-label">'+title+'</div>';
+  list.forEach(function(s){
+    var col=cc(s.convergence);
+    h+='<div class="scard" data-id="'+s.id+'">';
+    h+='<div><div class="scat">'+esc(s.category)+'</div>';
+    h+='<h2 class="shead">'+esc(s.headline)+'</h2>';
+    h+='<p class="stease">'+esc(s.teaser)+'</p>';
+    h+='<div class="cbar"><div class="ctrack"><div class="cfill" style="width:'+s.convergence+'%;background:'+col+'"></div></div>';
+    h+='<span class="cnum" style="color:'+col+'">'+s.convergence+'%</span>';
+    h+='<span style="font-size:11px;color:#8a8780">convergence</span></div></div>';
+    h+='<div class="ltags"><span class="ltag tL">Left</span><span class="ltag tC">Center</span><span class="ltag tR">Right</span></div>';
+    h+='</div>';
+  });
+  return h;
+}
+
+function showFeed(){
+  document.getElementById('feed').style.display='block';
+  document.getElementById('article').style.display='none';
+  window.scrollTo(0,0);
+}
+
+async function openStory(id){
+  var s=STORIES.find(function(x){return x.id===id;});
+  if(!s) return;
+  document.getElementById('a-cat').textContent=s.category;
+  document.getElementById('a-head').textContent=s.headline;
+  document.getElementById('a-loading').style.display='block';
+  document.getElementById('a-content').style.display='none';
+  document.getElementById('a-err').style.display='none';
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  document.querySelector('.tab').classList.add('on');
+  document.getElementById('tp-syn').classList.add('on');
+  document.getElementById('feed').style.display='none';
+  document.getElementById('article').style.display='block';
+  window.scrollTo(0,0);
+  var timer=stepTimer();
+  try{
+    var r=await fetch('/api/synthesize',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({headline:s.headline,category:s.category,sources:s.sources})
+    });
+    var d=await r.json();
+    if(!d.ok) throw new Error(d.error||'Synthesis failed');
+    clearInterval(timer);doneSteps();
+    await new Promise(function(r){setTimeout(r,300);});
+    fill(d.synthesis,s.convergence);
+    document.getElementById('a-loading').style.display='none';
+    document.getElementById('a-content').style.display='block';
+  }catch(e){
+    clearInterval(timer);
+    document.getElementById('a-loading').style.display='none';
+    document.getElementById('a-err').textContent='Synthesis failed: '+esc(e.message);
+    document.getElementById('a-err').style.display='block';
+  }
+}
+
+function stepTimer(){
+  var i=0;
+  ['s0','s1','s2','s3'].forEach(function(id){var el=document.getElementById(id);el.className='lstep';el.querySelector('.sico').className='sico';el.querySelector('.sico').textContent=id.replace('s','');});
+  return setInterval(function(){
+    if(i>0){var p=document.getElementById('s'+(i-1));p.className='lstep done';var ic=p.querySelector('.sico');ic.className='sico done';ic.textContent='✓';}
+    if(i<4){var c=document.getElementById('s'+i);c.className='lstep on';c.querySelector('.sico').className='sico on';i++;}
+  },850);
+}
+function doneSteps(){
+  ['s0','s1','s2','s3'].forEach(function(id){var el=document.getElementById(id);el.className='lstep done';var ic=el.querySelector('.sico');ic.className='sico done';ic.textContent='✓';});
+}
+
+function fill(d,fb){
+  var sc=d.convergenceScore||fb;var col=cc(sc);
+  document.getElementById('cfill').style.cssText='height:100%;border-radius:3px;transition:width 1s ease;width:'+sc+'%;background:'+col;
+  document.getElementById('cscore').textContent=sc+'%';document.getElementById('cscore').style.color=col;
+  document.getElementById('kernel').textContent=d.consensusKernel||'';
+  document.getElementById('lt').textContent=d.leftTake||'';
+  document.getElementById('ct').textContent=d.centerTake||'';
+  document.getElementById('rt').textContent=d.rightTake||'';
+  document.getElementById('sbody').innerHTML=(d.synthesizedArticle||'').split(/\n\n+/).filter(Boolean).map(function(p){return '<p>'+esc(p.trim())+'</p>';}).join('');
+  document.getElementById('flbody').innerHTML=(d.faultLines||[]).map(function(f,i){return '<div class="fault"><div class="fnum">'+(i+1)+'</div><div class="ftext">'+esc(f)+'</div></div>';}).join('');
+  var eyes=d.blindEyes||{};
+  document.getElementById('bebody').innerHTML=[['L','Left omits',eyes.left],['C','Center omits',eyes.center],['R','Right omits',eyes.right]].map(function(x){return '<div class="blind b'+x[0]+'"><div class="blabel bl'+x[0]+'">'+x[1]+'</div><div class="btext">'+esc(x[2]||'')+'</div></div>';}).join('');
+}
+
+function doTab(name,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  btn.classList.add('on');
+  document.getElementById('tp-'+name).classList.add('on');
+}
+</script>
+</body>
+</html>
