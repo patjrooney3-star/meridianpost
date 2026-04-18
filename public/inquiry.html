@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Inquiry — The Meridian Post</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#1a1814;color:#faf9f6;font-size:15px;min-height:100vh}
+.mast{border-bottom:1px solid #3a3530;padding:0 24px;background:#1a1814;position:sticky;top:0;z-index:100}
+.mast-in{max-width:600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 0;flex-wrap:wrap;gap:10px}
+.mast-brand{display:flex;flex-direction:column}
+.game-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;letter-spacing:-.01em;color:#faf9f6}
+.game-sub{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8780;margin-top:2px}
+.mast-r{display:flex;align-items:center;gap:12px}
+.home-link{font-size:12px;color:#8a8780;text-decoration:none;border:1px solid #3a3530;padding:5px 12px;border-radius:6px}
+.home-link:hover{color:#faf9f6;border-color:#5a5550}
+.streak{font-size:12px;color:#8a8780;display:flex;align-items:center;gap:5px}
+.streak-num{font-size:14px;font-weight:500;color:#e8c97a}
+.wrap{max-width:600px;margin:0 auto;padding:32px 24px 60px}
+/* DATE PILL */
+.date-pill{display:inline-flex;align-items:center;gap:8px;background:#2a2420;border:1px solid #3a3530;border-radius:20px;padding:6px 14px;font-size:12px;color:#8a8780;margin-bottom:24px}
+.date-dot{width:6px;height:6px;border-radius:50%;background:#e8c97a}
+/* INTRO */
+.intro-card{background:#2a2420;border:1px solid #3a3530;border-radius:12px;padding:24px;margin-bottom:28px;text-align:center}
+.intro-card h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:8px;color:#faf9f6}
+.intro-card p{font-size:13px;color:#8a8780;line-height:1.65}
+.start-btn{margin-top:18px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 28px;background:#e8c97a;color:#1a1814;border:none;border-radius:8px;cursor:pointer;transition:background .15s}
+.start-btn:hover{background:#d4b560}
+/* GAME */
+#game{display:none}
+.clue-header{margin-bottom:20px}
+.clue-header h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#faf9f6;margin-bottom:6px}
+.clue-header p{font-size:13px;color:#8a8780;line-height:1.6}
+/* QUESTION COUNTER */
+.qcounter{display:flex;gap:6px;margin-bottom:24px}
+.qdot{width:32px;height:6px;border-radius:3px;background:#2a2420;border:1px solid #3a3530;transition:background .3s}
+.qdot.used{background:#e8c97a;border-color:#e8c97a}
+.qdot.current{background:#5a5550;border-color:#8a8780}
+/* Q&A LOG */
+.qa-log{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;min-height:40px}
+.qa-item{display:flex;flex-direction:column;gap:4px;background:#2a2420;border-radius:8px;padding:12px 14px;border-left:3px solid #3a3530}
+.qa-q{font-size:13px;color:#8a8780}
+.qa-a{font-size:14px;font-weight:500}
+.qa-yes{color:#4a9a6a}
+.qa-no{color:#9a4a4a}
+.qa-partly{color:#e8c97a}
+/* INPUT */
+.input-area{margin-bottom:20px}
+.input-row{display:flex;gap:10px}
+.qinput{flex:1;font-family:'DM Sans',sans-serif;font-size:14px;padding:12px 14px;background:#2a2420;border:1px solid #3a3530;border-radius:8px;color:#faf9f6;outline:none;transition:border-color .15s}
+.qinput:focus{border-color:#5a5550}
+.qinput::placeholder{color:#5a5550}
+.ask-btn{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:12px 20px;background:#e8c97a;color:#1a1814;border:none;border-radius:8px;cursor:pointer;white-space:nowrap}
+.ask-btn:hover{background:#d4b560}
+.ask-btn:disabled{background:#3a3530;color:#5a5550;cursor:not-allowed}
+.hint{font-size:12px;color:#5a5550;margin-top:8px}
+/* GUESS */
+.guess-area{border-top:1px solid #3a3530;padding-top:20px}
+.guess-area h4{font-size:13px;font-weight:500;color:#8a8780;margin-bottom:10px;letter-spacing:.04em;text-transform:uppercase}
+.ginput{width:100%;font-family:'DM Sans',sans-serif;font-size:14px;padding:12px 14px;background:#2a2420;border:1px solid #3a3530;border-radius:8px;color:#faf9f6;outline:none;margin-bottom:10px}
+.ginput:focus{border-color:#5a5550}
+.guess-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px;background:#faf9f6;color:#1a1814;border:none;border-radius:8px;cursor:pointer}
+.guess-btn:hover{background:#e8e5de}
+/* RESULT */
+#result{display:none}
+.result-card{background:#2a2420;border-radius:12px;padding:28px;text-align:center;margin-bottom:20px}
+.result-icon{font-size:48px;margin-bottom:12px}
+.result-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:8px}
+.result-correct{color:#4a9a6a}
+.result-wrong{color:#9a4a4a}
+.result-event{font-size:15px;color:#8a8780;line-height:1.65;margin-bottom:16px}
+.result-explanation{font-size:14px;color:#faf9f6;line-height:1.75;background:#1a1814;border-radius:8px;padding:16px;margin-bottom:16px;text-align:left}
+.result-connection{font-size:13px;color:#8a8780;line-height:1.65;border-left:3px solid #e8c97a;padding-left:14px;text-align:left;margin-bottom:20px}
+/* SCORE GRID */
+.score-grid{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
+.sgrid-dot{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sg-used{background:#e8c97a}
+.sg-unused{background:#2a2420;border:1px solid #3a3530}
+.sg-wrong{background:#9a4a4a}
+.share-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px;background:#e8c97a;color:#1a1814;border:none;border-radius:8px;cursor:pointer;margin-bottom:10px}
+.share-btn:hover{background:#d4b560}
+.play-again{font-size:13px;color:#8a8780;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline}
+/* LOADING */
+.thinking{font-size:13px;color:#8a8780;padding:8px 0;display:none}
+.dots{display:inline-block;animation:dots 1.2s infinite}
+@keyframes dots{0%{content:'...'}33%{content:''}66%{content:'.'}100%{content:'...'}}
+.spinner-sm{width:16px;height:16px;border:2px solid #3a3530;border-top-color:#e8c97a;border-radius:50%;animation:spin .8s linear infinite;display:inline-block;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.foot{border-top:1px solid #3a3530;margin-top:40px;padding:20px 0;text-align:center;font-size:12px;color:#5a5550}
+.foot a{color:#8a8780;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-in">
+    <div class="mast-brand">
+      <div class="game-title">The Inquiry</div>
+      <div class="game-sub">A daily history game</div>
+    </div>
+    <div class="mast-r">
+      <div class="streak">🔥 <span class="streak-num" id="streak-num">0</span> day streak</div>
+      <a href="/" class="home-link">← Briefing</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="date-pill"><span class="date-dot"></span><span id="today-date"></span></div>
+
+  <!-- INTRO -->
+  <div id="intro">
+    <div class="intro-card">
+      <h2>Something happened on this day in history.</h2>
+      <p>Ask up to 7 yes/no questions to figure out what it was.<br>Then make your final guess.</p>
+      <button class="start-btn" onclick="startGame()">Begin The Inquiry &rarr;</button>
+    </div>
+    <div style="background:#2a2420;border-radius:12px;padding:20px;border:1px solid #3a3530">
+      <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a8780;margin-bottom:12px">How to play</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:20px;height:20px;border-radius:50%;background:#e8c97a;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0">1</div><div style="font-size:13px;color:#8a8780;line-height:1.5">Ask yes/no questions — "Was it in America?" "Did it involve a war?" "Was it before 1900?"</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:20px;height:20px;border-radius:50%;background:#e8c97a;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0">2</div><div style="font-size:13px;color:#8a8780;line-height:1.5">You have 7 questions. Use them wisely to narrow it down.</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:20px;height:20px;border-radius:50%;background:#e8c97a;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0">3</div><div style="font-size:13px;color:#8a8780;line-height:1.5">Make your final guess at any time. Fewer questions = better score.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME -->
+  <div id="game">
+    <div class="clue-header">
+      <h3>What happened on this day?</h3>
+      <p id="game-hint">Ask your first question to begin narrowing it down.</p>
+    </div>
+    <div class="qcounter" id="qcounter"></div>
+    <div class="qa-log" id="qa-log"></div>
+    <div class="thinking" id="thinking"><span class="spinner-sm"></span>The Inquiry is consulting the archives...</div>
+    <div class="input-area" id="input-area">
+      <div class="input-row">
+        <input type="text" class="qinput" id="qinput" placeholder="Ask a yes/no question..." maxlength="120">
+        <button class="ask-btn" id="ask-btn" onclick="askQuestion()">Ask</button>
+      </div>
+      <div class="hint" id="qleft">7 questions remaining</div>
+    </div>
+    <div class="guess-area">
+      <h4>Ready to guess?</h4>
+      <input type="text" class="ginput" id="ginput" placeholder="What is the historical event?">
+      <button class="guess-btn" onclick="makeGuess()">Submit Final Guess</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result">
+    <div class="result-card">
+      <div class="result-icon" id="result-icon"></div>
+      <div class="result-title" id="result-title"></div>
+      <div class="result-event" id="result-event"></div>
+    </div>
+    <div class="result-explanation" id="result-explanation"></div>
+    <div class="result-connection" id="result-connection"></div>
+    <div style="background:#2a2420;border-radius:12px;padding:20px;margin-bottom:20px">
+      <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a8780;margin-bottom:12px">Your score</div>
+      <div class="score-grid" id="score-grid"></div>
+      <div style="font-size:13px;color:#8a8780;text-align:center;margin-bottom:16px" id="score-label"></div>
+      <button class="share-btn" onclick="shareResult()">Share your result</button>
+      <div style="text-align:center"><button class="play-again" onclick="location.reload()">Play tomorrow's &rarr;</button></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="/">The Meridian Post</a> &middot; The Inquiry resets daily at midnight
+  </div>
+</div>
+
+<script>
+var EVENT = null;
+var QA = [];
+var MAX_Q = 7;
+var USED_Q = 0;
+var GUESSED = false;
+var TODAY_KEY = new Date().toISOString().slice(0,10);
+
+// Pre-loaded events
+var PRESET_EVENTS = {
+  '2026-04-18': { event: "Paul Revere's Midnight Ride", year: 1775, description: "Paul Revere rode through the Massachusetts countryside warning colonial militias that British troops were marching to seize colonial weapons stored at Concord.", connection: "This act of civic warning — getting accurate information to the right people fast — mirrors what The Meridian Post tries to do today: cut through the noise and deliver what matters, quickly." },
+  '2026-04-19': { event: "The Battle of Lexington and Concord", year: 1775, description: "The first military engagements of the American Revolutionary War were fought. The 'shot heard round the world' marked the beginning of armed conflict between Britain and its American colonies.", connection: "The battles sparked a media war too — both sides told completely different stories about who fired first, an early example of the same event producing wildly different narratives." },
+  '2026-04-20': { event: "The Deepwater Horizon Explosion", year: 2010, description: "The BP Deepwater Horizon oil rig exploded in the Gulf of Mexico, killing 11 workers and triggering the largest marine oil spill in history, releasing nearly 5 million barrels of oil.", connection: "The disaster triggered fierce political debate about offshore drilling regulation — a story where left, center and right perspectives diverged dramatically on causes and solutions." },
+  '2026-04-21': { event: "The Founding of Rome", year: -753, description: "According to Roman tradition, Romulus founded the city of Rome on the Palatine Hill on April 21, 753 BC, after killing his twin brother Remus in a dispute over the city's location.", connection: "The founding myth of Rome — and who gets to tell it — shaped Western civilisation's self-image for centuries, an early lesson in how narrative and history are always intertwined." },
+  '2026-04-22': { event: "The First Earth Day", year: 1970, description: "Twenty million Americans took to the streets in the first Earth Day, a nationwide demonstration for environmental protection that led directly to the creation of the EPA and landmark environmental legislation.", connection: "Earth Day remains one of the most politically contested anniversaries in America — a perfect example of a single event that generates completely different narratives across the political spectrum." },
+  '2026-04-23': { event: "The Birth and Death of William Shakespeare", year: 1564, description: "William Shakespeare was born on April 23, 1564 in Stratford-upon-Avon, England. By an remarkable coincidence, he also died on April 23, 1616 — his 52nd birthday — making this date uniquely his own in history.", connection: "Shakespeare wrote about power, propaganda, and how rulers shape public narrative — themes as relevant to today's media landscape as they were in Elizabethan England." }
+};
+
+function getStreak(){ return parseInt(localStorage.getItem('inquiry_streak')||'0'); }
+function setStreak(n){ localStorage.setItem('inquiry_streak',n); }
+function getLastPlayed(){ return localStorage.getItem('inquiry_last')||''; }
+function setLastPlayed(d){ localStorage.setItem('inquiry_last',d); }
+
+window.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('streak-num').textContent = getStreak();
+  buildCounter();
+});
+
+function buildCounter(){
+  var c=document.getElementById('qcounter');
+  c.innerHTML='';
+  for(var i=0;i<MAX_Q;i++){
+    var d=document.createElement('div');
+    d.className='qdot';
+    d.id='qdot-'+i;
+    c.appendChild(d);
+  }
+}
+
+function updateCounter(){
+  for(var i=0;i<MAX_Q;i++){
+    var d=document.getElementById('qdot-'+i);
+    if(i<USED_Q) d.className='qdot used';
+    else if(i===USED_Q) d.className='qdot current';
+    else d.className='qdot';
+  }
+}
+
+async function startGame(){
+  document.getElementById('intro').style.display='none';
+  document.getElementById('game').style.display='block';
+  // Load event
+  if(PRESET_EVENTS[TODAY_KEY]){
+    EVENT = PRESET_EVENTS[TODAY_KEY];
+  } else {
+    // Generate via API
+    try{
+      var r = await fetch('/api/inquiry-event', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({date:TODAY_KEY})});
+      var d = await r.json();
+      if(d.ok) EVENT = d.event;
+    }catch(e){}
+    if(!EVENT){
+      document.getElementById('game-hint').textContent = 'Could not load today\'s event. Please refresh.';
+      return;
+    }
+  }
+  updateCounter();
+  document.getElementById('qinput').focus();
+}
+
+document.getElementById('qinput').addEventListener('keydown', function(e){
+  if(e.key==='Enter') askQuestion();
+});
+document.getElementById('ginput').addEventListener('keydown', function(e){
+  if(e.key==='Enter') makeGuess();
+});
+
+async function askQuestion(){
+  var q = document.getElementById('qinput').value.trim();
+  if(!q || USED_Q >= MAX_Q || GUESSED) return;
+  if(!EVENT) return;
+
+  var btn = document.getElementById('ask-btn');
+  btn.disabled = true;
+  document.getElementById('thinking').style.display='block';
+  document.getElementById('qinput').value='';
+
+  try{
+    var r = await fetch('/api/inquiry-answer', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({question:q, event:EVENT.event, year:EVENT.year, qa:QA})
+    });
+    var d = await r.json();
+    if(!d.ok) throw new Error(d.error);
+
+    var answer = d.answer; // YES, NO, or PARTLY
+    QA.push({q:q, a:answer});
+    USED_Q++;
+
+    // Add to log
+    var log = document.getElementById('qa-log');
+    var item = document.createElement('div');
+    item.className='qa-item';
+    var aClass = answer==='YES'?'qa-yes':answer==='NO'?'qa-no':'qa-partly';
+    var aText = answer==='YES'?'✓ Yes':answer==='NO'?'✗ No':'~ Partly';
+    item.innerHTML='<div class="qa-q">'+esc(q)+'</div><div class="qa-a '+aClass+'">'+aText+'</div>';
+    log.appendChild(item);
+
+    updateCounter();
+    var left = MAX_Q - USED_Q;
+    document.getElementById('qleft').textContent = left + ' question'+(left===1?'':'s')+' remaining';
+
+    if(left===0){
+      document.getElementById('input-area').style.display='none';
+      document.getElementById('game-hint').textContent='No more questions — make your final guess below.';
+    } else {
+      document.getElementById('game-hint').textContent='Keep narrowing it down, or make your guess when ready.';
+    }
+
+  }catch(e){
+    document.getElementById('game-hint').textContent='Something went wrong. Try again.';
+  }
+
+  document.getElementById('thinking').style.display='none';
+  btn.disabled=false;
+  if(USED_Q < MAX_Q) document.getElementById('qinput').focus();
+}
+
+async function makeGuess(){
+  var g = document.getElementById('ginput').value.trim();
+  if(!g || GUESSED || !EVENT) return;
+  GUESSED = true;
+
+  try{
+    var r = await fetch('/api/inquiry-judge', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({guess:g, event:EVENT.event, year:EVENT.year})
+    });
+    var d = await r.json();
+    showResult(d.correct, USED_Q);
+  }catch(e){
+    // Simple local check as fallback
+    var correct = g.toLowerCase().includes(EVENT.event.toLowerCase().split(' ')[0]);
+    showResult(correct, USED_Q);
+  }
+}
+
+function showResult(correct, questionsUsed){
+  document.getElementById('game').style.display='none';
+  document.getElementById('result').style.display='block';
+
+  // Update streak
+  var last = getLastPlayed();
+  var yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+  var yKey = yesterday.toISOString().slice(0,10);
+  var streak = getStreak();
+  if(correct){
+    if(last===yKey) streak++;
+    else if(last!==TODAY_KEY) streak=1;
+    setStreak(streak);
+    setLastPlayed(TODAY_KEY);
+    document.getElementById('streak-num').textContent=streak;
+  }
+
+  document.getElementById('result-icon').textContent = correct ? '🎉' : '📚';
+  document.getElementById('result-title').textContent = correct ? 'You got it!' : 'Not quite';
+  document.getElementById('result-title').className = 'result-title ' + (correct?'result-correct':'result-wrong');
+  document.getElementById('result-event').textContent = EVENT.event + ' — ' + Math.abs(EVENT.year) + (EVENT.year<0?' BC':' AD');
+  document.getElementById('result-explanation').textContent = EVENT.description;
+  document.getElementById('result-connection').textContent = '📰 ' + EVENT.connection;
+
+  // Score grid
+  var grid = document.getElementById('score-grid');
+  grid.innerHTML='';
+  for(var i=0;i<MAX_Q;i++){
+    var dot=document.createElement('div');
+    dot.className='sgrid-dot ';
+    if(i<questionsUsed) dot.className+='sg-used';
+    else if(!correct && i===questionsUsed) dot.className+='sg-wrong';
+    else dot.className+='sg-unused';
+    dot.textContent = i<questionsUsed ? '?' : (correct&&i===questionsUsed?'✓':'');
+    grid.appendChild(dot);
+  }
+
+  var labels = ['','','Genius — 1-2 questions','Sharp — 3-4 questions','Getting there — 5-6 questions','Got there — all 7','Got there — all 7','Better luck tomorrow'];
+  document.getElementById('score-label').textContent = correct ? (labels[questionsUsed]||'Got it!') : 'Better luck tomorrow';
+}
+
+function shareResult(){
+  var correct = document.getElementById('result-title').textContent==='You got it!';
+  var grid='';
+  for(var i=0;i<MAX_Q;i++){
+    if(i<USED_Q) grid+='🟨';
+    else if(!correct&&i===USED_Q) grid+='🟥';
+    else grid+='⬛';
+  }
+  var text = 'The Inquiry — '+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric'})+'\n'+grid+'\n'+(correct?'Got it in '+USED_Q+' question'+(USED_Q===1?'':'s'):'Didn\'t get it today')+'\nmeridianpost.org/inquiry';
+  if(navigator.share){ navigator.share({text:text}); }
+  else { navigator.clipboard.writeText(text); alert('Copied to clipboard!'); }
+}
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body>
+</html>
