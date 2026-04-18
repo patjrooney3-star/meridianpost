@@ -18,6 +18,11 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
 .badge{font-size:11px;padding:3px 10px;border:1px solid #d8d4cc;border-radius:20px;color:#4a4740;background:#f2f0eb}
 .rbtn{font-family:'DM Sans',sans-serif;font-size:12px;padding:6px 12px;border:1px solid #d8d4cc;background:transparent;border-radius:6px;cursor:pointer;color:#4a4740}
 .rbtn:hover{background:#f2f0eb}
+.mast-nav{display:flex;align-items:center;border-top:0.5px solid #d8d4cc;margin:0 -24px;padding:0 24px;gap:0}
+.nav-item{font-size:13px;padding:8px 16px;color:#8a8780;text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-2px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:color .15s}
+.nav-item.on{color:#1a1814;border-bottom-color:#1a1814;font-weight:500}
+.nav-item:hover{color:#1a1814}
+.nav-badge{font-size:11px;background:#1a1814;color:#e8c97a;padding:2px 7px;border-radius:4px;font-weight:500}
 /* SPEC BAR */
 .specbar{border-bottom:1px solid #d8d4cc;background:#f2f0eb;padding:0 24px}
 .specbar-in{max-width:680px;margin:0 auto;display:flex;align-items:center}
@@ -126,6 +131,10 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
       <span class="dlab" id="dlab"></span>
       <button class="rbtn" onclick="loadBriefing()">&#8635; Refresh</button>
     </div>
+  </div>
+  <div class="mast-nav">
+    <a href="/" class="nav-item on">Briefing</a>
+    <a href="/inquiry" class="nav-item nav-game"><span class="nav-badge">&#9670;</span> The Inquiry &mdash; The daily history game</a>
   </div>
 </header>
 
