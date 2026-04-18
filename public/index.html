@@ -3,44 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meridian — One story. Every angle.</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>The Meridian Post — One story. Every angle.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size:15px}
+/* MASTHEAD */
 .mast{border-bottom:2px solid #1a1814;padding:0 24px;background:#faf9f6;position:sticky;top:0;z-index:100}
-.mast-in{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 0;flex-wrap:wrap;gap:10px}
-.logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:#1a1814;text-decoration:none;cursor:pointer}
-.tagline{font-size:11px;color:#8a8780;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.mast-in{max-width:680px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 0;flex-wrap:wrap;gap:10px}
+.logo{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;color:#1a1814;text-decoration:none;cursor:pointer;letter-spacing:-.01em}
+.tagline{font-size:10px;color:#8a8780;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 .mast-r{display:flex;align-items:center;gap:10px}
 .dlab{font-size:12px;color:#8a8780}
 .badge{font-size:11px;padding:3px 10px;border:1px solid #d8d4cc;border-radius:20px;color:#4a4740;background:#f2f0eb}
-.rbtn{font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 14px;border:1px solid #d8d4cc;background:transparent;border-radius:8px;cursor:pointer;color:#4a4740}
+.rbtn{font-family:'DM Sans',sans-serif;font-size:12px;padding:6px 12px;border:1px solid #d8d4cc;background:transparent;border-radius:6px;cursor:pointer;color:#4a4740}
 .rbtn:hover{background:#f2f0eb}
+/* SPEC BAR */
 .specbar{border-bottom:1px solid #d8d4cc;background:#f2f0eb;padding:0 24px}
-.specbar-in{max-width:900px;margin:0 auto;display:flex;align-items:center}
-.speck{font-size:11px;font-weight:500;padding:8px 16px;display:flex;align-items:center;gap:6px;border-right:1px solid #d8d4cc;color:#8a8780}
-.dot{width:8px;height:8px;border-radius:50%}
-.live{font-size:11px;color:#8a8780;padding:8px 16px;margin-left:auto;display:flex;align-items:center;gap:6px}
-.pulse{width:7px;height:7px;border-radius:50%;background:#1a6b3a;animation:pulse 2s ease-in-out infinite}
+.specbar-in{max-width:680px;margin:0 auto;display:flex;align-items:center}
+.speck{font-size:11px;font-weight:500;padding:7px 14px;display:flex;align-items:center;gap:5px;border-right:1px solid #d8d4cc;color:#8a8780}
+.dot{width:7px;height:7px;border-radius:50%}
+.live{font-size:11px;color:#8a8780;padding:7px 14px;margin-left:auto;display:flex;align-items:center;gap:5px}
+.pulse{width:6px;height:6px;border-radius:50%;background:#1a6b3a;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.wrap{max-width:900px;margin:0 auto;padding:24px}
-.spinner{width:32px;height:32px;border:2px solid #d8d4cc;border-top-color:#1a1814;border-radius:50%;animation:spin .8s linear infinite;margin:50px auto 16px}
+/* LAYOUT */
+.wrap{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+/* LOADING */
+.spinner{width:28px;height:28px;border:2px solid #d8d4cc;border-top-color:#1a1814;border-radius:50%;animation:spin .8s linear infinite;margin:50px auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loadtxt{text-align:center;font-size:14px;color:#4a4740;margin-bottom:40px}
-.sec-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#8a8780;padding-bottom:10px;border-bottom:1px solid #d8d4cc;margin-bottom:16px;margin-top:28px}
-.scard{padding:18px 0;border-bottom:1px solid #d8d4cc;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;transition:background .12s}
-.scard:hover{background:#f2f0eb;margin:0 -12px;padding:18px 12px;border-bottom-color:transparent;border-radius:8px}
-.scat{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#8a8780;margin-bottom:5px}
-.shead{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;line-height:1.3;margin-bottom:6px}
-.stease{font-size:13px;color:#4a4740;line-height:1.55;margin-bottom:10px}
-.cbar{display:flex;align-items:center;gap:6px}
-.ctrack{width:60px;height:3px;background:#e8e5de;border-radius:2px;overflow:hidden}
+/* BRIEFING */
+.intro{font-size:14px;color:#4a4740;line-height:1.75;padding:16px 18px;background:#f2f0eb;border-radius:8px;margin-bottom:32px;border-left:3px solid #1a1814}
+.story{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid #d8d4cc}
+.story:last-of-type{border-bottom:none}
+.story-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.snum{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#8a8780}
+.scat{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+.cbar{display:flex;align-items:center;gap:5px}
+.ctrack{width:50px;height:3px;background:#e8e5de;border-radius:2px;overflow:hidden}
 .cfill{height:100%;border-radius:2px}
-.cnum{font-size:11px;font-weight:500}
-.ltags{display:flex;flex-direction:column;gap:3px;padding-top:22px}
-.ltag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;text-align:center}
-.tL{background:#e8f0f8;color:#1a4a7a}.tC{background:#fdf3dc;color:#5a3a00}.tR{background:#faeaea;color:#6a1a1a}
+.cscore{font-size:11px;font-weight:500}
+.shead{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;line-height:1.3;margin-bottom:10px;cursor:pointer}
+.shead:hover{text-decoration:underline;text-decoration-color:#d8d4cc}
+.sbrief{font-size:15px;line-height:1.85;color:#1a1814;margin-bottom:14px}
+.takes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+@media(max-width:480px){.takes{grid-template-columns:1fr}}
+.take{padding:10px 12px;border-radius:6px}
+.tlabel{font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.ttext{font-size:11px;line-height:1.6}
+.story-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.readmore{font-size:12px;color:#1a4a7a;cursor:pointer;display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0}
+.readmore:hover{text-decoration:underline}
+.briefbtn{font-size:12px;color:#4a4740;cursor:pointer;display:inline-flex;align-items:center;gap:4px;background:none;border:1px solid #d8d4cc;border-radius:20px;padding:4px 12px;font-family:'DM Sans',sans-serif}
+.briefbtn:hover{background:#f2f0eb}
+/* BRIEF POPUP */
+.briefpop{display:none;background:#f2f0eb;border-radius:8px;padding:16px 18px;margin-top:12px;border-left:3px solid #1a1814;position:relative}
+.briefpop p{font-size:14px;line-height:1.8;color:#1a1814}
+.briefpop-actions{display:flex;align-items:center;gap:10px;margin-top:12px}
+.copybtn{font-size:12px;padding:5px 12px;border:1px solid #d8d4cc;border-radius:20px;background:white;cursor:pointer;font-family:'DM Sans',sans-serif;color:#4a4740}
+.copybtn:hover{background:#f2f0eb}
+.closebtn{font-size:12px;color:#8a8780;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-left:auto}
+/* BRIEFING FOOTER */
+.bfooter{text-align:center;padding:28px 0 0;border-top:1px solid #d8d4cc;margin-top:8px}
+.bfooter p{font-size:13px;color:#8a8780;line-height:1.7}
+.sharebtn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:10px 20px;border:1px solid #d8d4cc;border-radius:20px;cursor:pointer;margin-top:14px;color:#4a4740;background:transparent;font-family:'DM Sans',sans-serif}
+.sharebtn:hover{background:#f2f0eb}
+/* ARTICLE */
 #article{display:none}
 .aback{font-size:13px;color:#8a8780;cursor:pointer;padding:14px 0;border-bottom:1px solid #d8d4cc;margin-bottom:22px;display:flex;align-items:center;gap:6px}
 .aback:hover{color:#1a1814}
@@ -82,6 +110,7 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
 .sico.on{background:#e8e5de;border-color:#8a8780}.sico.done{background:#e6f4ec;border-color:#1a6b3a;color:#1a6b3a}
 .foot{border-top:1px solid #d8d4cc;margin-top:60px;padding:20px 0;text-align:center;font-size:12px;color:#8a8780}
 .foot a{color:#1a4a7a;text-decoration:none}
+.tL{background:#e8f0f8;color:#1a4a7a}.tC{background:#fdf3dc;color:#5a3a00}.tR{background:#faeaea;color:#6a1a1a}
 </style>
 </head>
 <body>
@@ -89,13 +118,13 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
 <header class="mast">
   <div class="mast-in">
     <div>
-      <div class="logo" onclick="showFeed()">Meridian</div>
+      <div class="logo" onclick="showBriefing()">The Meridian Post</div>
       <div class="tagline">One story. Every angle. The truth between.</div>
     </div>
     <div class="mast-r">
       <span class="badge" id="edition"></span>
       <span class="dlab" id="dlab"></span>
-      <button class="rbtn" onclick="loadFeed()">&#8635; Refresh</button>
+      <button class="rbtn" onclick="loadBriefing()">&#8635; Refresh</button>
     </div>
   </div>
 </header>
@@ -110,12 +139,15 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
 </div>
 
 <div class="wrap">
-  <div id="feed">
+  <!-- BRIEFING VIEW -->
+  <div id="briefing">
     <div class="spinner"></div>
-    <div class="loadtxt">Loading today's stories...</div>
+    <div class="loadtxt">Preparing today's briefing...</div>
   </div>
+
+  <!-- ARTICLE VIEW -->
   <div id="article">
-    <div class="aback" onclick="showFeed()">&#8592; Back</div>
+    <div class="aback" onclick="showBriefing()">&#8592; Back to briefing</div>
     <div class="acat" id="a-cat"></div>
     <h1 class="ahead" id="a-head"></h1>
     <div id="a-loading" style="display:none">
@@ -136,9 +168,9 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
           <div class="mlabel">Convergence score</div>
           <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
             <div style="flex:1;height:6px;background:#e8e5de;border-radius:3px;overflow:hidden">
-              <div id="cfill" style="height:100%;border-radius:3px;transition:width 1s ease;width:0%"></div>
+              <div id="conv-fill" style="height:100%;border-radius:3px;transition:width 1s ease;width:0%"></div>
             </div>
-            <span id="cscore" style="font-size:20px;font-weight:500"></span>
+            <span id="conv-score" style="font-size:20px;font-weight:500"></span>
           </div>
         </div>
         <div class="mbox">
@@ -147,9 +179,9 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
         </div>
       </div>
       <div class="pstrip">
-        <div class="pbox pL"><span class="ltag tL ptag">Left</span><div class="ptext ptL" id="lt"></div></div>
-        <div class="pbox pC"><span class="ltag tC ptag">Center</span><div class="ptext ptC" id="ct"></div></div>
-        <div class="pbox pR"><span class="ltag tR ptag">Right</span><div class="ptext ptR" id="rt"></div></div>
+        <div class="pbox pL"><span class="ptag tL">Left</span><div class="ptext ptL" id="lt"></div></div>
+        <div class="pbox pC"><span class="ptag tC">Center</span><div class="ptext ptC" id="ct"></div></div>
+        <div class="pbox pR"><span class="ptag tR">Right</span><div class="ptext ptR" id="rt"></div></div>
       </div>
       <div class="tabs">
         <button class="tab on" onclick="doTab('syn',this)">Synthesis</button>
@@ -162,64 +194,140 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1814;font-size
     </div>
     <div id="a-err" class="errmsg" style="display:none"></div>
   </div>
+
   <div class="foot">
-    <strong style="color:#4a4740">Meridian</strong> &mdash; not left, not right, not even center. The whole picture. &middot;
-    <a href="mailto:hello@meridian.news">hello@meridian.news</a>
+    <strong style="color:#4a4740">The Meridian Post</strong> &mdash; not left, not right, not even center. The whole picture. &middot;
+    <a href="mailto:hello@meridianpost.org">hello@meridianpost.org</a>
   </div>
 </div>
 
 <script>
 var STORIES = [];
+var BRIEFS = {};
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function cc(n){return n>=65?'#1a6b3a':n>=40?'#8a5200':'#8a1a1a';}
 
 window.addEventListener('DOMContentLoaded',function(){
   var h=new Date().getHours();
-  document.getElementById('edition').textContent=h<12?'Morning Dispatch':'Evening Wrap';
+  document.getElementById('edition').textContent=h<12?'Morning Briefing':'Evening Briefing';
   document.getElementById('dlab').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  loadFeed();
+  loadBriefing();
 });
 
-async function loadFeed(){
-  var f=document.getElementById('feed');
-  f.innerHTML='<div class="spinner"></div><div class="loadtxt">Loading today\'s stories...</div>';
-  showFeed();
+async function loadBriefing(){
+  var box=document.getElementById('briefing');
+  box.innerHTML='<div class="spinner"></div><div class="loadtxt">Preparing today\'s briefing...</div>';
+  showBriefing();
   try{
     var r=await fetch('/api/stories');
     var d=await r.json();
     if(!d.ok) throw new Error(d.error||'Failed to load');
     STORIES=d.stories;
-    var mid=Math.ceil(STORIES.length/2);
-    f.innerHTML=section('Morning Dispatch',STORIES.slice(0,mid))+section('Evening Wrap',STORIES.slice(mid));
-    f.querySelectorAll('[data-id]').forEach(function(el){
-      el.addEventListener('click',function(){openStory(+el.dataset.id);});
-    });
+    renderBriefing();
   }catch(e){
-    f.innerHTML='<div class="errmsg">Could not load stories: '+esc(e.message)+'</div>';
+    box.innerHTML='<div class="errmsg">Could not load briefing: '+esc(e.message)+'</div>';
   }
 }
 
-function section(title,list){
-  if(!list.length) return '';
-  var h='<div class="sec-label">'+title+'</div>';
-  list.forEach(function(s){
+function renderBriefing(){
+  var box=document.getElementById('briefing');
+  var h=new Date().getHours();
+  var greeting=h<12?'Good morning':'Good evening';
+  var html='<div class="intro">'+greeting+'. Today\'s briefing covers '+STORIES.length+' major stories. Convergence scores reflect how much all sides agree on the facts. Here\'s everything you need to know.</div>';
+  STORIES.forEach(function(s,i){
     var col=cc(s.convergence);
-    h+='<div class="scard" data-id="'+s.id+'">';
-    h+='<div><div class="scat">'+esc(s.category)+'</div>';
-    h+='<h2 class="shead">'+esc(s.headline)+'</h2>';
-    h+='<p class="stease">'+esc(s.teaser)+'</p>';
-    h+='<div class="cbar"><div class="ctrack"><div class="cfill" style="width:'+s.convergence+'%;background:'+col+'"></div></div>';
-    h+='<span class="cnum" style="color:'+col+'">'+s.convergence+'%</span>';
-    h+='<span style="font-size:11px;color:#8a8780">convergence</span></div></div>';
-    h+='<div class="ltags"><span class="ltag tL">Left</span><span class="ltag tC">Center</span><span class="ltag tR">Right</span></div>';
-    h+='</div>';
+    html+='<div class="story" id="story-'+s.id+'">';
+    html+='<div class="story-top">';
+    html+='<span class="snum">0'+(i+1)+'</span>';
+    html+='<span class="scat tL" style="background:'+catBg(s.category)+';color:'+catColor(s.category)+'">'+esc(s.category)+'</span>';
+    html+='<div class="cbar"><div class="ctrack"><div class="cfill" style="width:'+s.convergence+'%;background:'+col+'"></div></div>';
+    html+='<span class="cscore" style="color:'+col+'">'+s.convergence+'%</span></div>';
+    html+='</div>';
+    html+='<h2 class="shead" onclick="openStory('+s.id+')">'+esc(s.headline)+'</h2>';
+    html+='<p class="sbrief">'+esc(s.teaser)+'</p>';
+    html+='<div class="takes">';
+    html+='<div class="take" style="background:#e8f0f8"><div class="tlabel" style="color:#1a4a7a">Left</div><div class="ttext" style="color:#1a4a7a" id="lt-'+s.id+'">Loading...</div></div>';
+    html+='<div class="take" style="background:#fdf3dc"><div class="tlabel" style="color:#5a3a00">Center</div><div class="ttext" style="color:#5a3a00" id="ct-'+s.id+'">Loading...</div></div>';
+    html+='<div class="take" style="background:#faeaea"><div class="tlabel" style="color:#6a1a1a">Right</div><div class="ttext" style="color:#6a1a1a" id="rt-'+s.id+'">Loading...</div></div>';
+    html+='</div>';
+    html+='<div class="story-actions">';
+    html+='<button class="readmore" onclick="openStory('+s.id+')">Read full synthesis &rarr;</button>';
+    html+='<button class="briefbtn" onclick="toggleBrief('+s.id+',this)">&#9654; 60-second brief</button>';
+    html+='</div>';
+    html+='<div class="briefpop" id="brief-'+s.id+'"><p id="brieftext-'+s.id+'">Generating brief...</p><div class="briefpop-actions"><button class="copybtn" onclick="copyBrief('+s.id+')">Copy</button><button class="closebtn" onclick="closeBrief('+s.id+')">Close</button></div></div>';
+    html+='</div>';
   });
-  return h;
+  html+='<div class="bfooter"><p>You\'ve read today\'s briefing.<br>Three perspectives. One synthesis. The whole picture.</p><button class="sharebtn" onclick="shareBriefing()">&#8679; Share today\'s briefing</button></div>';
+  box.innerHTML=html;
+  // Load takes for all stories in background
+  STORIES.forEach(function(s){ loadTakes(s); });
 }
 
-function showFeed(){
-  document.getElementById('feed').style.display='block';
+function catBg(cat){
+  var m={'Politics':'#e8f0f8','Economy':'#fdf3dc','World':'#faeaea','Technology':'#e8f4ec','Health':'#f4e8f8','Environment':'#e8f4e8'};
+  return m[cat]||'#f2f0eb';
+}
+function catColor(cat){
+  var m={'Politics':'#1a4a7a','Economy':'#5a3a00','World':'#6a1a1a','Technology':'#1a5a3a','Health':'#5a1a5a','Environment':'#1a5a1a'};
+  return m[cat]||'#4a4740';
+}
+
+async function loadTakes(s){
+  try{
+    var r=await fetch('/api/synthesize',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({headline:s.headline,category:s.category,sources:s.sources,takesOnly:true})});
+    var d=await r.json();
+    if(!d.ok) return;
+    var syn=d.synthesis;
+    var lt=document.getElementById('lt-'+s.id);
+    var ct=document.getElementById('ct-'+s.id);
+    var rt=document.getElementById('rt-'+s.id);
+    if(lt) lt.textContent=syn.leftTake||'';
+    if(ct) ct.textContent=syn.centerTake||'';
+    if(rt) rt.textContent=syn.rightTake||'';
+    STORIES.forEach(function(x){if(x.id===s.id) x._syn=syn;});
+  }catch(e){}
+}
+
+async function toggleBrief(id,btn){
+  var pop=document.getElementById('brief-'+id);
+  if(pop.style.display==='block'){closeBrief(id);return;}
+  pop.style.display='block';
+  btn.textContent='&#9660; 60-second brief';
+  var s=STORIES.find(function(x){return x.id===id;});
+  if(BRIEFS[id]){document.getElementById('brieftext-'+id).textContent=BRIEFS[id];return;}
+  try{
+    var r=await fetch('/api/brief',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({headline:s.headline,category:s.category})});
+    var d=await r.json();
+    if(!d.ok) throw new Error(d.error);
+    BRIEFS[id]=d.brief;
+    document.getElementById('brieftext-'+id).textContent=d.brief;
+  }catch(e){
+    document.getElementById('brieftext-'+id).textContent='Could not generate brief. Try again.';
+  }
+}
+function closeBrief(id){
+  document.getElementById('brief-'+id).style.display='none';
+  var btns=document.querySelectorAll('.briefbtn');
+  btns.forEach(function(b){if(b.getAttribute('onclick')==='toggleBrief('+id+',this)') b.innerHTML='&#9654; 60-second brief';});
+}
+function copyBrief(id){
+  var text=BRIEFS[id]||'';
+  if(navigator.clipboard) navigator.clipboard.writeText(text);
+  var btn=document.querySelector('[onclick="copyBrief('+id+')"]');
+  if(btn){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy';},2000);}
+}
+function shareBriefing(){
+  if(navigator.share){
+    navigator.share({title:'The Meridian Post',text:'Today\'s briefing — three perspectives, one synthesis.',url:window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link copied to clipboard!');
+  }
+}
+
+function showBriefing(){
+  document.getElementById('briefing').style.display='block';
   document.getElementById('article').style.display='none';
   window.scrollTo(0,0);
 }
@@ -236,21 +344,23 @@ async function openStory(id){
   document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
   document.querySelector('.tab').classList.add('on');
   document.getElementById('tp-syn').classList.add('on');
-  document.getElementById('feed').style.display='none';
+  document.getElementById('briefing').style.display='none';
   document.getElementById('article').style.display='block';
   window.scrollTo(0,0);
+  if(s._syn){
+    fillArticle(s._syn,s.convergence);
+    document.getElementById('a-loading').style.display='none';
+    document.getElementById('a-content').style.display='block';
+    return;
+  }
   var timer=stepTimer();
   try{
-    var r=await fetch('/api/synthesize',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({headline:s.headline,category:s.category,sources:s.sources})
-    });
+    var r=await fetch('/api/synthesize',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({headline:s.headline,category:s.category,sources:s.sources})});
     var d=await r.json();
     if(!d.ok) throw new Error(d.error||'Synthesis failed');
     clearInterval(timer);doneSteps();
     await new Promise(function(r){setTimeout(r,300);});
-    fill(d.synthesis,s.convergence);
+    fillArticle(d.synthesis,s.convergence);
     document.getElementById('a-loading').style.display='none';
     document.getElementById('a-content').style.display='block';
   }catch(e){
@@ -273,10 +383,10 @@ function doneSteps(){
   ['s0','s1','s2','s3'].forEach(function(id){var el=document.getElementById(id);el.className='lstep done';var ic=el.querySelector('.sico');ic.className='sico done';ic.textContent='✓';});
 }
 
-function fill(d,fb){
+function fillArticle(d,fb){
   var sc=d.convergenceScore||fb;var col=cc(sc);
-  document.getElementById('cfill').style.cssText='height:100%;border-radius:3px;transition:width 1s ease;width:'+sc+'%;background:'+col;
-  document.getElementById('cscore').textContent=sc+'%';document.getElementById('cscore').style.color=col;
+  document.getElementById('conv-fill').style.cssText='height:100%;border-radius:3px;transition:width 1s ease;width:'+sc+'%;background:'+col;
+  document.getElementById('conv-score').textContent=sc+'%';document.getElementById('conv-score').style.color=col;
   document.getElementById('kernel').textContent=d.consensusKernel||'';
   document.getElementById('lt').textContent=d.leftTake||'';
   document.getElementById('ct').textContent=d.centerTake||'';
