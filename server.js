@@ -240,6 +240,28 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // POST /api/brief — generate 60-second brief
+  if (url === '/api/brief' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', async () => {
+      try {
+        const { headline, category } = JSON.parse(body);
+        const raw = await callClaude(
+          'Write a 60-second brief for this news story. One punchy paragraph, plain English, no jargon, no political spin. Just the facts anyone needs to understand what happened and why it matters. Under 80 words.\n\nHeadline: "' + headline + '"\nCategory: ' + category + '\n\nReturn ONLY the paragraph text, nothing else.',
+          200
+        );
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(200);
+        res.end(JSON.stringify({ ok: true, brief: raw }));
+      } catch(e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: e.message }));
+      }
+    });
+    return;
+  }
+
   res.writeHead(404);
   res.end('Not found');
 });
