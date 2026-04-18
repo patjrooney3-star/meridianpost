@@ -262,6 +262,108 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Serve inquiry game
+  if (url === '/inquiry') {
+    const fs = require('fs');
+    const html = fs.readFileSync(__dirname + '/public/inquiry.html', 'utf8');
+    res.setHeader('Content-Type', 'text/html');
+    res.writeHead(200);
+    res.end(html);
+    return;
+  }
+
+  // Serve terms page
+  if (url === '/terms') {
+    const fs = require('fs');
+    const html = fs.readFileSync(__dirname + '/public/terms.html', 'utf8');
+    res.setHeader('Content-Type', 'text/html');
+    res.writeHead(200);
+    res.end(html);
+    return;
+  }
+
+  // Serve privacy page
+  if (url === '/privacy') {
+    const fs = require('fs');
+    const html = fs.readFileSync(__dirname + '/public/privacy.html', 'utf8');
+    res.setHeader('Content-Type', 'text/html');
+    res.writeHead(200);
+    res.end(html);
+    return;
+  }
+
+  // POST /api/inquiry-event — generate today's historical event
+  if (url === '/api/inquiry-event' && req.method === 'POST') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', async () => {
+      try {
+        const { date } = JSON.parse(body);
+        const d = new Date(date);
+        const month = d.toLocaleDateString('en-US',{month:'long'});
+        const day = d.getDate();
+        const raw = await callClaude(
+          'Give me one significant historical event that happened on ' + month + ' ' + day + ' in history. Pick something genuinely interesting and educational — not too obscure, not too obvious.\n\nReturn ONLY valid JSON:\n{"event":"Name of the event","year":1969,"description":"2-3 sentence factual description of what happened and why it matters.","connection":"1 sentence connecting this historical event to themes relevant in todays news and media landscape."}',
+          400
+        );
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(200);
+        res.end(JSON.stringify({ ok: true, event: JSON.parse(raw) }));
+      } catch(e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: e.message }));
+      }
+    });
+    return;
+  }
+
+  // POST /api/inquiry-answer — answer a yes/no question about the event
+  if (url === '/api/inquiry-answer' && req.method === 'POST') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', async () => {
+      try {
+        const { question, event, year, qa } = JSON.parse(body);
+        const history = (qa||[]).map(x => 'Q: ' + x.q + ' A: ' + x.a).join('\n');
+        const raw = await callClaude(
+          'You are the host of a history guessing game. The hidden event is: "' + event + '" (' + year + ').\n\nPrevious questions:\n' + (history||'None') + '\n\nNew question: "' + question + '"\n\nAnswer ONLY with one word: YES, NO, or PARTLY. Nothing else.',
+          10
+        );
+        const answer = raw.trim().toUpperCase().includes('YES') ? 'YES' : raw.trim().toUpperCase().includes('PARTLY') ? 'PARTLY' : 'NO';
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(200);
+        res.end(JSON.stringify({ ok: true, answer }));
+      } catch(e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: e.message }));
+      }
+    });
+    return;
+  }
+
+  // POST /api/inquiry-judge — judge if the guess is correct
+  if (url === '/api/inquiry-judge' && req.method === 'POST') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', async () => {
+      try {
+        const { guess, event, year } = JSON.parse(body);
+        const raw = await callClaude(
+          'The correct answer is: "' + event + '" (' + year + ').\nThe player guessed: "' + guess + '"\n\nIs this correct or close enough to be correct? Be generous — if they got the main idea right, it counts.\n\nRespond with only one word: YES or NO.',
+          10
+        );
+        const correct = raw.trim().toUpperCase().includes('YES');
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(200);
+        res.end(JSON.stringify({ ok: true, correct }));
+      } catch(e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: e.message }));
+      }
+    });
+    return;
+  }
+
   res.writeHead(404);
   res.end('Not found');
 });
